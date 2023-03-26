@@ -222,12 +222,13 @@
                         <div class="product-category">
                             <span class="title">Categories :</span>
                             <ul>
-                                <li>
-                                    <a href="#">Office,</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home</a>
-                                </li>
+                                @foreach (var category in Model.PlantCategories)
+                                {
+                                    <li>
+                                        <a href="#">@category.Category,</a>
+                                    </li>
+                                }
+                               
                             </ul>
                         </div>
                         <div class="product-category product-tags">
