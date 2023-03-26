@@ -13,7 +13,7 @@ namespace P230_Pronia.Controllers
 		{
 			_context = context;
 		}
-		public IActionResult index()
+		public IActionResult  index()
         {
             List<Plant> plants = _context.Plants.
                   Include(p => p.PlantTags).ThenInclude(tp => tp.Tag).
@@ -34,13 +34,12 @@ namespace P230_Pronia.Controllers
                   .Include(p => p.PlantImages)
                   .FirstOrDefault(x => x.Id == id);
 
-            var category = plant?.PlantCategories;
-            if (category is null) return NotFound();
-
+          
+           
             ViewBag.RelatedPlants = _context.Plants
                 .Include(p => p.PlantImages)
                 .Include(pc => pc.PlantCategories).ThenInclude(c=>c.Category)
-                .Where(p => p.PlantCategories.Any(c => c.CategoryId == categoryId))
+                .Where(p => p.PlantCategories.Any(c => c.Category.Id == categoryId))
                 .ToList();
 
             return View(plant);
