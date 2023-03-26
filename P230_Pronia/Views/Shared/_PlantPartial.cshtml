@@ -4,7 +4,7 @@
     
     <div class="swiper-slide product-item">
         <div class="product-img">
-            <a href="single-product-variable.html">
+              <a asp-controller="Shop" asp-action="Detail" asp-route-id="@item.Id" asp-route-categoryId="@item.PlantCategories.FirstOrDefault(a=>a.Category!=null)?.Category.Id">
                 <img class="primary-img"
                      src="~/assets/images/website-images//@item.PlantImages.FirstOrDefault(p=>p.IsMain==true)?.Path"
                      alt="Product Images" />

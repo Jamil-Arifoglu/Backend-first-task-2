@@ -24,7 +24,7 @@ namespace P230_Pronia.Controllers
             return View(plants);
         }
         public IActionResult Detail(int id, int categoryId)
-        {
+        {  
             Plant? plant = _context.Plants
                   .Include(p => p.PlantTags)
                   .ThenInclude(tp => tp.Tag)

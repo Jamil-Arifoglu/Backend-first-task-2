@@ -17,6 +17,14 @@ namespace P230_Pronia.Controllers
         public IActionResult Index()
         {
             List<Slider> slider = _context.Sliders.OrderBy(s=>s.Order).ToList();
+
+         
+                                            ViewBag.RelatedPlants = _context.Plants
+                .Include(p => p.PlantImages)
+                .Include(pc => pc.PlantCategories).ThenInclude(c => c.Category)
+                                            .OrderByDescending(p => p.Id)
+                                            .Take(8)
+                                            .ToList();
             return View(slider);
         }
     }
